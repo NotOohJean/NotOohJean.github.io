@@ -9,9 +9,9 @@
   <meta property="og:title" content="친구가 용돈 주기를 부탁했어요" />
   <meta property="og:description" content="나도 다람쥐 키우면 사랑을 받아요." />
   
-  <!-- [수정 필수 1] 내아이디를 본인 GitHub 아이디로 변경하세요 -->
-  <meta property="og:image" content="https://NotOohJean.github.io/event/thumbnail.png" />
-  <meta property="og:url" content="https://NotOohJean.github.io/event/" />
+  <!-- [수정 필수 1] 본인 GitHub 아이디로 변경 -->
+  <meta property="og:image" content="https://notoohjean.github.io/event/thumbnail.png" />
+  <meta property="og:url" content="https://notoohjean.github.io/event/" />
 
   <title>친구 안우진에게 용돈 선물하기</title>
   <style>
@@ -32,7 +32,7 @@
       min-height: 100dvh;
     }
 
-    /* 모바일 화면 컨테이너 */
+    /* 전체 모바일 뷰 컨테이너 */
     .app-container {
       width: 100%;
       max-width: 430px;
@@ -71,7 +71,7 @@
       cursor: pointer;
     }
 
-    /* 프로그레스 게이지 영역 */
+    /* 상단 프로그레스 바 & 모은 돈 */
     .progress-section {
       padding: 8px 24px 0;
     }
@@ -89,11 +89,11 @@
       overflow: hidden;
     }
     .progress-fill {
-      width: 3%;
+      width: 4%;
       height: 100%;
       background: linear-gradient(90deg, #ff9f00, #ffb800);
       border-radius: 999px;
-      transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .money-bag-icon {
       width: 28px;
@@ -101,7 +101,6 @@
       flex-shrink: 0;
     }
 
-    /* 모은 돈 텍스트 영역 */
     .status-text {
       text-align: center;
     }
@@ -130,7 +129,7 @@
       color: #8b95a1;
     }
 
-    /* 중앙 캐릭터 및 말풍선 영역 */
+    /* 중앙 다람쥐 & 말풍선 */
     .character-stage {
       flex: 1;
       display: flex;
@@ -193,7 +192,7 @@
       border-radius: 12px;
     }
 
-    /* 하단 버튼 영역 */
+    /* 하단 주황색 메인 버튼 */
     .bottom-area {
       padding: 12px 22px 28px;
     }
@@ -215,11 +214,11 @@
       transform: scale(0.98);
     }
 
-    /* 바텀시트 모달 (계좌번호 팝업) */
+    /* 카카오페이 연동 바텀시트 모달 */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.5);
       display: flex;
       justify-content: center;
       align-items: flex-end;
@@ -261,41 +260,37 @@
     .sheet-desc {
       font-size: 15px;
       color: #6b7684;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
-    .account-card {
-      background: #f9fafb;
-      border: 1px solid #e5e8eb;
-      border-radius: 18px;
-      padding: 18px;
-      margin-bottom: 18px;
-    }
-    .bank-name {
-      font-size: 14px;
-      color: #4e5968;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-    .account-num {
-      font-size: 21px;
-      font-weight: 800;
-      color: #191f28;
-      letter-spacing: 0.5px;
-      user-select: text;
-    }
-    .copy-btn {
+
+    /* 카카오페이 송금 전용 노란색 버튼 */
+    .kakaopay-btn {
       width: 100%;
-      background-color: #c65800;
-      color: #ffffff;
+      background-color: #fee500;
+      color: #191919;
       border: none;
       border-radius: 16px;
-      padding: 17px;
+      padding: 18px 20px;
       font-size: 17px;
-      font-weight: 700;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       cursor: pointer;
-      margin-bottom: 10px;
-      transition: background-color 0.2s;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      transition: background-color 0.15s, transform 0.1s;
+      margin-bottom: 12px;
     }
+    .kakaopay-btn:active {
+      background-color: #edd700;
+      transform: scale(0.98);
+    }
+    .kakaopay-logo {
+      width: 22px;
+      height: 22px;
+    }
+
     .close-btn {
       width: 100%;
       background: #f2f4f6;
@@ -303,9 +298,14 @@
       border: none;
       border-radius: 16px;
       padding: 15px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
+    }
+    .app-hint {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #8b95a1;
     }
   </style>
 </head>
@@ -321,16 +321,15 @@
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
         </button>
-        <button class="info-btn" onclick="alert('친구 안우진에게 도토리 대신 따뜻한 용돈을 선물하는 패러디 페이지입니다 🐿️')">안내</button>
+        <button class="info-btn" onclick="alert('친구 안우진에게 도토리 대신 용돈을 선물하는 패러디 페이지입니다 🐿️')">안내</button>
       </header>
 
-      <!-- 상단 게이지 및 모은 돈 -->
+      <!-- 모은 돈 게이지 섹션 -->
       <section class="progress-section">
         <div class="progress-row">
           <div class="progress-track">
             <div class="progress-fill" id="progressFill"></div>
           </div>
-          <!-- 복주머니 아이콘 -->
           <svg class="money-bag-icon" viewBox="0 0 36 36" fill="none">
             <path d="M13 6L18 9L23 6L21 12H15L13 6Z" fill="#FFA800"/>
             <circle cx="18" cy="22" r="11" fill="#FFC700"/>
@@ -355,7 +354,6 @@
         내 밥도 잊지 않았지?
       </div>
 
-      <!-- 3D 스타일 다람쥐 SVG (터치 시 대사 변경) -->
       <div class="squirrel-wrapper" onclick="changeTalk()">
         <svg viewBox="0 0 260 250" width="100%" height="100%">
           <defs>
@@ -392,9 +390,8 @@
           <ellipse cx="115" cy="212" rx="22" ry="13" transform="rotate(-12 115 212)" fill="url(#bodyGrad)"/>
           <ellipse cx="176" cy="208" rx="22" ry="13" transform="rotate(15 176 208)" fill="url(#bodyGrad)"/>
 
-          <!-- 몸통 -->
+          <!-- 몸통 및 배 -->
           <ellipse cx="145" cy="168" rx="42" ry="50" fill="url(#bodyGrad)"/>
-          <!-- 배 크림색 털 -->
           <ellipse cx="152" cy="172" rx="25" ry="36" fill="url(#creamGrad)"/>
 
           <!-- 귀 (좌/우) -->
@@ -403,24 +400,16 @@
           <ellipse cx="178" cy="62" rx="16" ry="22" transform="rotate(18 178 62)" fill="url(#headGrad)"/>
           <ellipse cx="176" cy="64" rx="9" ry="13" transform="rotate(18 176 64)" fill="#c9713b"/>
 
-          <!-- 머리 -->
+          <!-- 얼굴 및 볼 -->
           <path d="M92 108 C92 66, 198 66, 198 108 C206 132, 185 150, 145 150 C105 150, 84 132, 92 108 Z" fill="url(#headGrad)"/>
-          <!-- 이마 줄무늬 -->
           <path d="M138 68 Q145 92 152 68 Z" fill="#9e5220" opacity="0.65"/>
-
-          <!-- 볼/입 주변 크림색 영역 -->
           <path d="M95 118 C95 104, 125 106, 145 116 C165 106, 195 104, 195 118 C198 138, 175 150, 145 150 C115 150, 92 138, 95 118 Z" fill="url(#creamGrad)"/>
+
           <!-- 볼터치 -->
           <ellipse cx="110" cy="124" rx="11" ry="7" fill="#ff8a75" opacity="0.35"/>
           <ellipse cx="180" cy="124" rx="11" ry="7" fill="#ff8a75" opacity="0.35"/>
 
-          <!-- 불쌍한 눈썹 (복사 완료 시 바뀜) -->
-          <g id="sadBrows">
-            <path d="M112 92 Q122 96 128 89" stroke="#753912" stroke-width="3.2" stroke-linecap="round" fill="none"/>
-            <path d="M178 92 Q168 96 162 89" stroke="#753912" stroke-width="3.2" stroke-linecap="round" fill="none"/>
-          </g>
-
-          <!-- 초롱초롱한 눈 -->
+          <!-- 눈동자 -->
           <g>
             <circle cx="123" cy="106" r="8.5" fill="#221712"/>
             <circle cx="120.5" cy="103" r="3" fill="#ffffff"/>
@@ -435,7 +424,7 @@
           <ellipse cx="145" cy="117" rx="5.5" ry="4" fill="#6e3312"/>
           <path id="mouthPath" d="M139 127 Q145 122 151 127" stroke="#6e3312" stroke-width="2.5" stroke-linecap="round" fill="none"/>
 
-          <!-- 공손히 모은 두 손 -->
+          <!-- 공손한 두 손 -->
           <ellipse cx="134" cy="158" rx="14" ry="11" transform="rotate(20 134 158)" fill="url(#headGrad)"/>
           <ellipse cx="156" cy="158" rx="14" ry="11" transform="rotate(-20 156 158)" fill="url(#headGrad)"/>
         </svg>
@@ -444,37 +433,42 @@
       <div class="name-tag">내 다람쥐 (안우진)</div>
     </main>
 
-    <!-- 하단 주황색 버튼 -->
+    <!-- 하단 토스 스타일 버튼 -->
     <footer class="bottom-area">
       <button class="cta-btn" onclick="openSheet()">다람쥐한테 밥 주기</button>
     </footer>
   </div>
 
-  <!-- 계좌번호 안내 바텀시트 모달 -->
+  <!-- 카카오페이 송금 연동 바텀시트 -->
   <div class="modal-overlay" id="modalOverlay" onclick="closeSheet(event)">
     <div class="bottom-sheet" onclick="event.stopPropagation()">
       <div class="sheet-handle"></div>
       <div class="sheet-title">안우진 다람쥐에게 용돈 주기 🐿️</div>
-      <div class="sheet-desc">도토리 대신 아래 계좌로 따뜻한 마음을 보내주세요!</div>
+      <div class="sheet-desc">도토리 대신 카카오톡으로 따뜻한 용돈을 보내보세요!</div>
 
-      <div class="account-card">
-        <!-- [수정 필수 2] 본인 은행명과 계좌번호로 변경하세요 -->
-        <div class="bank-name">하나은행 (예금주: 안우진)</div>
-        <div class="account-num" id="accNum">123-456789-01234</div>
-      </div>
+      <!-- 카카오페이 바로가기 버튼 -->
+      <button class="kakaopay-btn" id="payBtn" onclick="sendKakaoPay()">
+        <svg class="kakaopay-logo" viewBox="0 0 24 24" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C6.477 3 2 6.477 2 10.772c0 2.76 1.838 5.183 4.607 6.551-.186.685-.672 2.476-.768 2.861-.12.482.176.475.372.345.153-.102 2.427-1.65 3.411-2.324.76.108 1.554.167 2.378.167 5.523 0 10-3.477 10-7.772C22 6.477 17.523 3 12 3z" fill="#191919"/>
+        </svg>
+        카카오페이로 바로 보내기
+      </button>
 
-      <button class="copy-btn" id="copyBtn" onclick="copyAccount()">계좌번호 복사하고 밥 주기</button>
-      <button class="close-btn" onclick="closeSheet()">닫기</button>
+      <button class="close-btn" onclick="closeSheet()">다음에 주기</button>
+      <div class="app-hint">* 누르면 카카오톡 송금 화면으로 바로 이동합니다.</div>
     </div>
   </div>
 
   <script>
+    // [수정 필수 2] 카카오톡 > 더보기 > 카카오페이 > 송금코드 링크를 입력하세요
+    const KAKAOPAY_URL = "https://qr.kakaopay.com/FE5P4HYI7";
+
     const talks = [
       "내 밥도 잊지 않았지?",
       "배고파서 현기증 난단 말이야...",
-      "도토리 대신 현금도 잘 먹어!",
-      "10,000원이면 다람쥐가 행복해져요",
-      "우진이 커피 한 잔만 사주라 ☕"
+      "카카오페이는 도토리보다 달콤해 🍯",
+      "우진이 맛있는 밥 사주라 🍚",
+      "10,000원이면 다람쥐가 행복해져요"
     ];
     let talkIdx = 0;
 
@@ -491,27 +485,21 @@
       document.getElementById("modalOverlay").classList.remove("active");
     }
 
-    function copyAccount() {
-      const acc = document.getElementById("accNum").innerText;
-      navigator.clipboard.writeText(acc).then(() => {
-        const copyBtn = document.getElementById("copyBtn");
-        copyBtn.innerText = "계좌번호 복사 완료! 💸";
-        copyBtn.style.backgroundColor = "#00b464";
+    function sendKakaoPay() {
+      const btn = document.getElementById("payBtn");
+      btn.innerText = "카카오톡 연결 중... 💸";
+      btn.style.backgroundColor = "#ffe833";
 
-        // 상단 게이지 & 금액 10,000원으로 채우기 연출
-        document.getElementById("progressFill").style.width = "100%";
-        document.getElementById("currentMoney").innerText = "10,000원";
-        document.getElementById("speechBubble").innerText = "고마워! 은행 앱에 붙여넣어 줘 ❤️";
-        
-        // 다람쥐 입모양을 웃는 표정으로 변경
-        document.getElementById("mouthPath").setAttribute("d", "M138 124 Q145 132 152 124");
+      // 1. 게이지 10,000원 채우기 & 다람쥐 웃는 표정 전환
+      document.getElementById("progressFill").style.width = "100%";
+      document.getElementById("currentMoney").innerText = "10,000원";
+      document.getElementById("speechBubble").innerText = "고마워! 카카오톡으로 바로 갈게 ❤️";
+      document.getElementById("mouthPath").setAttribute("d", "M138 124 Q145 132 152 124");
 
-        setTimeout(() => {
-          closeSheet();
-          copyBtn.innerText = "계좌번호 복사하고 밥 주기";
-          copyBtn.style.backgroundColor = "#c65800";
-        }, 1400);
-      });
+      // 2. 애니메이션을 감상할 수 있도록 0.5초 뒤 카카오톡 송금 페이지로 이동
+      setTimeout(() => {
+        window.location.href = KAKAOPAY_URL;
+      }, 500);
     }
   </script>
 </body>
