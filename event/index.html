@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- 카카오톡 미리보기 설정 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="친구가 용돈 주기를 부탁했어요" />
+  <meta property="og:description" content="나도 용돈 보내면 사랑을 받아요." />
+  
+  <!-- [수정 필수 1] 내아이디와 저장소이름을 1단계에서 확인한 영문으로 변경하세요 -->
+<meta property="og:image" content="https://NotOohJean.github.io/event/thumbnail.png" />
+<meta property="og:url" content="https://NotOohJean.github.io/event/" />
+
+  <title>친구 안우진에게 용돈 선물하기</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Malgun Gothic", sans-serif; }
+    body { background-color: #f2f4f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+    .card { background: #ffffff; width: 100%; max-width: 380px; border-radius: 24px; padding: 36px 24px 28px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+    .badge { display: inline-block; background: #e8f3ff; color: #3182f6; font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px; margin-bottom: 16px; }
+    .banner-img { width: 100%; border-radius: 16px; margin-bottom: 20px; }
+    h1 { font-size: 22px; color: #191f28; line-height: 1.4; margin-bottom: 8px; font-weight: 700; }
+    p.sub { font-size: 15px; color: #6b7684; margin-bottom: 24px; }
+    .account-box { background: #f9fafb; border: 1px solid #e5e8eb; border-radius: 16px; padding: 18px 16px; margin-bottom: 20px; }
+    .bank { font-size: 14px; color: #4e5968; margin-bottom: 6px; font-weight: 500; }
+    .number { font-size: 19px; font-weight: 700; color: #191f28; letter-spacing: 0.5px; }
+    .btn { width: 100%; background: #3182f6; color: #ffffff; border: none; border-radius: 16px; padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.15s; }
+    .btn:active { background: #1b64da; transform: scale(0.98); }
+    .notice { margin-top: 16px; font-size: 12px; color: #8b95a1; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">용돈 이벤트</div>
+    <img src="./thumbnail.png" alt="배너" class="banner-img" />
+    <h1>친구 안우진에게<br/>용돈 선물하기</h1>
+    <p class="sub">도토리 대신 따뜻한 마음을 보내주세요</p>
+
+    <div class="account-box">
+      <!-- [수정 필수 2] 본인 은행명과 계좌번호로 변경하세요 -->
+      <div class="bank">하나은행 (예금주: 안우진)</div>
+      <div class="number" id="accNum">123-456789-01234</div>
+    </div>
+
+    <button class="btn" id="copyBtn" onclick="copyAccount()">계좌번호 복사하기</button>
+    <div class="notice">* 친구들과 즐기기 위해 제작된 개인 패러디 페이지입니다.</div>
+  </div>
+
+  <script>
+    function copyAccount() {
+      const acc = document.getElementById("accNum").innerText;
+      navigator.clipboard.writeText(acc).then(() => {
+        const btn = document.getElementById("copyBtn");
+        btn.innerText = "복사 완료! 은행 앱에 붙여넣으세요";
+        btn.style.background = "#00c471";
+        setTimeout(() => {
+          btn.innerText = "계좌번호 복사하기";
+          btn.style.background = "#3182f6";
+        }, 2500);
+      });
+    }
+  </script>
+</body>
+</html>
